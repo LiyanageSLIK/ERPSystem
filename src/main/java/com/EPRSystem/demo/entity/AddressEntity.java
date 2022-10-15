@@ -3,7 +3,7 @@ package com.EPRSystem.demo.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "AddressEntity")
+@Table(name = "address")
 public class AddressEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,8 +16,8 @@ public class AddressEntity {
     private float longitude;
     private float latitude;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Addressable_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "addressable_id", nullable = false)
     private AddressableEntity addressableEntity;
 
     public AddressEntity() {
