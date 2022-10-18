@@ -1,6 +1,10 @@
 package com.EPRSystem.demo.entity;
 
+import com.EPRSystem.demo.dto.AddressDto;
+import com.EPRSystem.demo.dto.ContactDto;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,6 +21,24 @@ public class AddressableEntity {
     @OneToMany(mappedBy = "addressableEntity", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<ContactEntity> contactEntities;
+
+    public void setAddressEntitiesByDto(Set<AddressDto> addressDtoSet) {
+        Set<AddressEntity> addressEntities = new HashSet<>();
+        for (AddressDto addressDto:addressDtoSet
+             ) {
+            addressEntities.add(new AddressEntity(addressDto));
+        }
+        this.addressEntities = addressEntities;
+    }
+
+    public void setContactEntitiesByDto(Set<ContactDto> contactDtoSet){
+        Set<ContactEntity> contactEntities = new HashSet<>();
+        for (ContactDto contactDto:contactDtoSet
+        ) {
+            contactEntities.add(new ContactEntity(contactDto));
+        }
+        this.contactEntities = contactEntities;
+    }
 
     public AddressableEntity() {
 

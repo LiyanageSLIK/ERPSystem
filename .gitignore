@@ -1,5 +1,5 @@
 HELP.md
-Database.txt
+
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/

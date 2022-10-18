@@ -6,9 +6,7 @@ import java.util.Set;
 @Entity
 @Table(name = "branch")
 public class BranchEntity extends AddressableEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+
     private String name;
 
     @OneToMany(mappedBy = "branchEntity", fetch = FetchType.LAZY,
@@ -24,13 +22,6 @@ public class BranchEntity extends AddressableEntity {
     public BranchEntity() {
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

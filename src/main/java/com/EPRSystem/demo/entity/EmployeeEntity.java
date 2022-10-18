@@ -6,9 +6,7 @@ import java.util.Set;
 @Entity
 @Table(name = "employee")
 public class EmployeeEntity extends AddressableEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+
     private String fullName;
     private String nameWithInitial;
     private long nicNo;
@@ -30,15 +28,7 @@ public class EmployeeEntity extends AddressableEntity {
     public EmployeeEntity() {
     }
 
-    @Override
-    public long getId() {
-        return id;
-    }
 
-    @Override
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getFullName() {
         return fullName;

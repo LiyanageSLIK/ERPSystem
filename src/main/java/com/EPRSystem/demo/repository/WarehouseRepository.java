@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WarehouseRepository extends JpaRepository<WarehouseEntity,Long> {
+    default WarehouseEntity getById(long id){
+        return this.findById(id).get();
+    }
 }

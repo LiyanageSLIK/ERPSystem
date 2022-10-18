@@ -1,15 +1,19 @@
 package com.EPRSystem.demo.entity;
 
+import com.EPRSystem.demo.dto.ContactDto;
+import org.jetbrains.annotations.Nullable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "contact")
 public class ContactEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String phoneNo;
     private String label;
+    @Nullable
     private String email;
 
     @ManyToOne(optional = false)
@@ -17,6 +21,12 @@ public class ContactEntity {
     private AddressableEntity addressableEntity;
 
     public ContactEntity() {
+    }
+
+    public ContactEntity(ContactDto contactDto) {
+        this.phoneNo=contactDto.getPhoneNo();
+        this.label= contactDto.getLabel();
+        this.email= contactDto.getEmail();
     }
 
     public long getId() {

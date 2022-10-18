@@ -1,0 +1,103 @@
+mysql -u root -p Password;
+CREATE DATABASE organisation;
+USE organisation;
+
+CREATE TABLE branch(
+id INTEGER AUTO_INCREMENT,
+branchCode VARCHAR(10)NOT NULL,
+name VARCHAR(100)NOT NULL,
+town VARCHAR(100) NOT NULL,
+location VARCHAR(100),
+timeStrap TIMESTAMP,
+PRIMARY KEY(id),
+UNIQUE (branchCode)
+);
+
+CREATE TABLE warehouse(
+id INTEGER AUTO_INCREMENT,
+branchCode VARCHAR(10)NOT NULL,
+name VARCHAR(100)NOT NULL,
+town VARCHAR(100) NOT NULL,
+location VARCHAR(100),
+timeStrap TIMESTAMP,
+PRIMARY KEY(id),
+FOREIGN KEY (branchCode) REFERENCES branch (branchCode)
+);
+
+CREATE TABLE employee(
+empNo INTEGER AUTO_INCREMENT,
+epfNo DECIMAL(10,0)NOT NULL,
+nicNo VARCHAR (10) NOT NULL,
+fullName VARCHAR(100) NOT NULL,
+dateOfJoin DATE NOT NULL,
+dateOfLeaved DATE ,
+timeStrap TIMESTAMP,
+PRIMARY KEY(empNo)
+);
+
+CREATE TABLE branch_employee(
+branchCode VARCHAR(10)NOT NULL,
+empNo INTEGER NOT NULL,
+timeStrap TIMESTAMP,
+FOREIGN KEY (branchCode) REFERENCES branch (branchCode),
+FOREIGN KEY (empNo) REFERENCES employee (empNo)
+);
+
+CREATE TABLE jobcontract(
+id INTEGER AUTO_INCREMENT,
+empNo INTEGER NOT NULL,
+designation VARCHAR(100)NOT NULL,
+basicSalary DECIMAL(10,2)NOT NULL,
+dateOfStart DATE NOT NULL,
+dateOfEnd DATE NOT NULL,
+timeStrap TIMESTAMP,
+PRIMARY KEY(id),
+FOREIGN KEY (empNo) REFERENCES employee (empNo)
+);
+
+CREATE TABLE fixedAllowance(
+id INTEGER AUTO_INCREMENT,
+empNo INTEGER NOT NULL,
+category VARCHAR(100) NOT NULL,
+description VARCHAR(100)NOT NULL,
+amount DECIMAL(10,2)NOT NULL,
+timeStrap TIMESTAMP,
+PRIMARY KEY(id),
+FOREIGN KEY (id) REFERENCES jobcontract (id)
+);
+
+CREATE TABLE paySheet(
+id INTEGER AUTO_INCREMENT,
+empNo INTEGER NOT NULL,
+incentive DECIMAL(10,2)NOT NULL,
+totalSalary DECIMAL(10,2)NOT NULL,
+month VARCHAR(20) NOT NULL,
+year YEAR NOT NULL,
+timeStrap TIMESTAMP,
+PRIMARY KEY(id),
+FOREIGN KEY (empNo) REFERENCES employee (empNo)
+);
+
+CREATE TABLE contactDetail(
+contactId INTEGER AUTO_INCREMENT,
+phoneNo DECIMAL(10,0)NOT NULL,
+postalAddress VARCHAR(20) NOT NULL,
+email VARCHAR(100) NOT NULL,
+timeStrap TIMESTAMP,
+PRIMARY KEY(contactId)
+);
+
+CREATE TABLE contactDetail_employee(
+contactId INTEGER NOT NULL,
+empNo INTEGER NOT NULL,
+timeStrap TIMESTAMP,
+FOREIGN KEY (contactId) REFERENCES contactDetail (contactId),
+FOREIGN KEY (empNo) REFERENCES employee (empNo)
+);
+
+
+INSERT INTO branch(branchCode,name,town,location) VALUES("GL-20","DSI-Galle","Galle","2121");
+INSERT INTO employee(epfNo,nicNo,fullName,dateOfJoin,dateOfLeaved) VALUES(122121,"940095862v","bandara","2021-12-03","2021-12-03");
+
+INSERT INTO warehouse(id,name,label,floor_area) VALUES(1,"test name","test label","2121");
+INSERT INTO address VALUES(1,"test address line1","test address line2","test city","test country",2.2588,6.5698,80000,1);
