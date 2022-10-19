@@ -25,10 +25,10 @@ public class WarehouseDto implements Serializable {
 
     public boolean isValidDto(long id){
         if(this.name.isEmpty() || this.addresses.isEmpty() ||this.id!=id){
-            AddressDto addressDto= this.addresses.stream().toList().get(0);
-            return addressDto.isValidDto();
+            return false;
         }
-        return false;
+        AddressDto addressDto= this.addresses.stream().toList().get(0);
+        return addressDto.isValidDto();
     }
 
     public WarehouseDto(@NotNull WarehouseEntity warehouseEntity) {

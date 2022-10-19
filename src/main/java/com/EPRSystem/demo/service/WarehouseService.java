@@ -38,7 +38,7 @@ public class WarehouseService {
     }
 
     public WarehouseDto add(WarehouseDto warehouseDto) throws Exception {
-        if (!warehouseDto.isValidDto(0)) {
+        if (warehouseDto.isValidDto(0)) {
             WarehouseEntity warehouseEntity=new WarehouseEntity(warehouseDto);
             return new WarehouseDto(warehouseRepository.save(warehouseEntity));
         } else {

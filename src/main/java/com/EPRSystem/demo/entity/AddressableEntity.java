@@ -2,9 +2,10 @@ package com.EPRSystem.demo.entity;
 
 import com.EPRSystem.demo.dto.AddressDto;
 import com.EPRSystem.demo.dto.ContactDto;
+import org.hibernate.collection.internal.PersistentSet;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,8 +23,10 @@ public class AddressableEntity {
             cascade = CascadeType.ALL)
     private Set<ContactEntity> contactEntities;
 
-    public void setAddressEntitiesByDto(Set<AddressDto> addressDtoSet) {
-        Set<AddressEntity> addressEntities = new HashSet<>();
+
+
+    public void setAddressEntitiesByDto(@NotNull Set<AddressDto> addressDtoSet) {
+        PersistentSet addressEntities = new PersistentSet();
         for (AddressDto addressDto:addressDtoSet
              ) {
             addressEntities.add(new AddressEntity(addressDto));
@@ -31,8 +34,8 @@ public class AddressableEntity {
         this.addressEntities = addressEntities;
     }
 
-    public void setContactEntitiesByDto(Set<ContactDto> contactDtoSet){
-        Set<ContactEntity> contactEntities = new HashSet<>();
+    public void setContactEntitiesByDto(@NotNull Set<ContactDto> contactDtoSet){
+        PersistentSet contactEntities = new PersistentSet();
         for (ContactDto contactDto:contactDtoSet
         ) {
             contactEntities.add(new ContactEntity(contactDto));

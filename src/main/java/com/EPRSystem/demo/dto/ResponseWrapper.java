@@ -1,6 +1,8 @@
 package com.EPRSystem.demo.dto;
 
 
+import org.apache.catalina.webresources.Cache;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -8,21 +10,20 @@ import java.util.List;
 public class ResponseWrapper {
     private String message;
     private String error;
-    private List<Object> data;
+    private ArrayList<Object> data;
     private int status;
 
-    public ResponseWrapper(int status, List<Object> data) {
-        this.data = data;
-        this.status = status;
-        this.message = "Successful";
-    }
 
     public ResponseWrapper(int status, Object Dto) {
-        this.data = new ArrayList<>();
-        data.add(Dto);
-        this.status = status;
-        this.message = "Successful";
-
+        try {
+            this.data = new ArrayList<>();
+            for (Object to : (ArrayList) Dto) {
+                data.add(to);
+            }}catch(Exception e){
+                data.add(Dto);
+            }
+            this.status = status;
+            this.message = "Successful";
     }
 
     public ResponseWrapper(int status, String message) {
@@ -50,7 +51,7 @@ public class ResponseWrapper {
         return data;
     }
 
-    public void setData(List<Object> data) {
+    public void setData(ArrayList<Object> data) {
         this.data = data;
     }
 
