@@ -9,24 +9,25 @@ import javax.persistence.*;
 @Table(name = "contact")
 public class ContactEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String phoneNo;
     private String label;
     @Nullable
     private String email;
 
-    @ManyToOne(optional = false,fetch = FetchType.LAZY)
-    @JoinColumn
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "addressable_id",referencedColumnName = "id")
     private AddressableEntity addressableEntity;
 
     public ContactEntity() {
     }
 
-    public ContactEntity(ContactDto contactDto) {
+    public ContactEntity(ContactDto contactDto,AddressableEntity addressableEntity) {
         this.phoneNo=contactDto.getPhoneNo();
         this.label= contactDto.getLabel();
         this.email= contactDto.getEmail();
+        this.addressableEntity=addressableEntity;
     }
 
     public long getId() {

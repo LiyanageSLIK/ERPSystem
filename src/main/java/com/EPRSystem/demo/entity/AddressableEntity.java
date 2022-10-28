@@ -7,11 +7,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table
 @Inheritance( strategy = InheritanceType.TABLE_PER_CLASS )
 public class AddressableEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
 
     @OneToMany(mappedBy = "addressableEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -25,7 +24,7 @@ public class AddressableEntity {
         Set addressEntities = new HashSet();
         for (AddressDto addressDto:addressDtoSet
              ) {
-            addressEntities.add(new AddressEntity(addressDto));
+            addressEntities.add(new AddressEntity(addressDto,this));
         }
         this.addressEntities = addressEntities;
     }
@@ -34,7 +33,7 @@ public class AddressableEntity {
         Set contactEntities = new HashSet();
         for (ContactDto contactDto:contactDtoSet
         ) {
-            contactEntities.add(new ContactEntity(contactDto));
+            contactEntities.add(new ContactEntity(contactDto,this));
         }
         this.contactEntities = contactEntities;
     }
