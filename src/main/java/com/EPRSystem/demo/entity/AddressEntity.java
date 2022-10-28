@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "address")
 public class AddressEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String addressLine1;
     private String addressLine2;
@@ -21,8 +21,8 @@ public class AddressEntity {
     @Nullable
     private float latitude;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "addressable_id", nullable = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
     private AddressableEntity addressableEntity;
 
     public AddressEntity() {
@@ -102,11 +102,12 @@ public class AddressEntity {
         this.latitude = latitude;
     }
 
-    public AddressableEntity getAddressable() {
+
+    public AddressableEntity getAddressableEntity() {
         return addressableEntity;
     }
 
-    public void setAddressable(AddressableEntity addressableEntity) {
+    public void setAddressableEntity(AddressableEntity addressableEntity) {
         this.addressableEntity = addressableEntity;
     }
 }

@@ -5,7 +5,7 @@ import com.EPRSystem.demo.entity.ContactEntity;
 import com.EPRSystem.demo.entity.WarehouseEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -14,10 +14,9 @@ import java.util.Set;
 
 public class WarehouseDto implements Serializable {
     private long id=0;
-    @Autowired
+
     private Set<AddressDto> addresses;
-    @Autowired
-    @Nullable
+
     private Set<ContactDto> contacts;
     private String name="";
     private String label="";
@@ -106,5 +105,8 @@ public class WarehouseDto implements Serializable {
     public WarehouseDto setFloorArea(String floorArea) {
         this.floorArea = floorArea;
         return this;
+    }
+
+    public WarehouseDto() {
     }
 }

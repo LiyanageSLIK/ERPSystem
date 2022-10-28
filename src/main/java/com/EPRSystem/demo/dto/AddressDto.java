@@ -107,4 +107,5 @@ public class AddressDto implements Serializable {
         this.latitude = latitude;
         return this;
     }
+
 }

@@ -17,11 +17,11 @@ public class EmployeeEntity extends AddressableEntity {
     private String dateOfJoin;
     private String dateOfLeave;
 
-    @OneToMany(mappedBy = "employeeEntity", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "employeeEntity", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private Set<AssignEmployeeEntity> assignEmployeeEntities;
 
-    @OneToMany(mappedBy = "employeeEntity", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "employeeEntity", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private Set<JobContractEntity> jobContractEntities;
 

@@ -19,9 +19,9 @@ public class WarehouseService {
     public List<WarehouseDto> getAll() throws Exception{
         ArrayList<WarehouseDto> warehouseDtoList = new ArrayList<>();
         List<WarehouseEntity> warehouseEntityList =warehouseRepository.findAll();
-//        if(warehouseEntityList.get(0).getName().isEmpty()){
-//            throw new Exception("No Warehouse records");
-//        }
+        if(warehouseEntityList.isEmpty()){
+            throw new Exception("No Warehouse records");
+        }
         for (WarehouseEntity warehouseEntity1 : warehouseEntityList) {
             WarehouseDto warehouseDto=new WarehouseDto(warehouseEntity1);
             warehouseDtoList.add(warehouseDto);

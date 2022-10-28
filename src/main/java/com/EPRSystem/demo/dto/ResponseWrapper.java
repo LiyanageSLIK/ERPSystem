@@ -62,4 +62,5 @@ public class ResponseWrapper {
     public void setStatus(int status) {
         this.status = status;
     }
+
 }

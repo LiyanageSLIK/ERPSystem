@@ -9,11 +9,11 @@ public class BranchEntity extends AddressableEntity {
 
     private String name;
 
-    @OneToMany(mappedBy = "branchEntity", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "branchEntity", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private Set<WarehouseEntity> warehouseEntities;
 
-    @OneToMany(mappedBy = "branchEntity", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "branchEntity", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private Set<AssignEmployeeEntity> assignEmployeeEntities;
 

@@ -56,4 +56,5 @@ public class ContactDto implements Serializable {
         this.email = email;
         return this;
     }
+
 }

@@ -9,15 +9,15 @@ import javax.persistence.*;
 @Table(name = "contact")
 public class ContactEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String phoneNo;
     private String label;
     @Nullable
     private String email;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "addressable_id", nullable = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @JoinColumn
     private AddressableEntity addressableEntity;
 
     public ContactEntity() {
@@ -68,4 +68,5 @@ public class ContactEntity {
     public void setAddressableEntity(AddressableEntity addressableEntity) {
         this.addressableEntity = addressableEntity;
     }
+
 }
